@@ -85,7 +85,7 @@ export function Instagram() {
         <span className="eyebrow cyan">Instagram</span>
         <h2 className="h2">Siga <a href={url} target="_blank" rel="noopener" className="gold italic">{h}</a></h2>
         <p className="p">Novidades, peças reais e vídeos da vitrine primeiro no Instagram.</p>
-        <a className="btn-line insta-btn" href={url} target="_blank" rel="noopener">Ver perfil no Instagram ↗</a>
+        <a className="btn-line insta-btn" href={url} target="_blank" rel="noopener">Ver perfil no Instagram</a>
       </div>
       <div className="insta-grid">
         {IG_PICS.map(n => (

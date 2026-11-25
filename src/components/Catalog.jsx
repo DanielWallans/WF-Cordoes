@@ -38,7 +38,7 @@ export default function Catalog({ onOpen, onAdd, cart }) {
               {p.thumb2 && <img src={p.thumb2} alt="" loading="lazy" className="img-b" />}
               <span className="tag"><Cube /> Modelo 3D</span>
               <button className={'fav' + (favs[p.id] ? ' on' : '')} aria-label="Favoritar" onClick={e => { e.stopPropagation(); setFavs(f => ({ ...f, [p.id]: !f[p.id] })); }}><Heart on={favs[p.id]} /></button>
-              <span className="card-cta">Ver em 3D ↗</span>
+              <span className="card-cta">Ver em 3D</span>
             </div>
             <div className="card-info">
               <div>
