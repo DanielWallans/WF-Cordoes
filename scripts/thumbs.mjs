@@ -1,4 +1,4 @@
-// Gera miniaturas leves (webp) para o catálogo: node make-thumbs.mjs
+// Gera as miniaturas .webp do catálogo e a imagem de compartilhamento (npm run thumbs)
 import sharp from 'sharp'; import fs from 'fs';
 const dir = 'public/catalogo';
 for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.jpg'))) {

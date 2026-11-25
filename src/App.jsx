@@ -35,7 +35,6 @@ export default function App() {
     const ctx = gsap.context(() => {
       if (reduce) return;
       gsap.utils.toArray('[data-reveal]').forEach(el => gsap.from(el, { y: 50, autoAlpha: 0, duration: 1.2, ease: 'power3.out', scrollTrigger: { trigger: el, start: 'top 88%' } }));
-      gsap.utils.toArray('[data-reveal-img]').forEach(el => gsap.fromTo(el, { clipPath: 'inset(100% 0% 0% 0%)' }, { clipPath: 'inset(0% 0% 0% 0%)', duration: 1.6, ease: 'power4.inOut', scrollTrigger: { trigger: el, start: 'top 85%' } }));
     });
     const t = setTimeout(() => ScrollTrigger.refresh(), 800);
     return () => { clearTimeout(t); ctx.revert(); gsap.ticker.remove(tick); lenis && lenis.destroy(); scroller.lenis = null; };
