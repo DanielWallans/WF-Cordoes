@@ -3,7 +3,7 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Lenis from 'lenis';
 import { scroller } from './scroll.js';
-import { openWhats } from './config.js';
+import { openWhats, LENGTHS } from './config.js';
 import Header from './components/Header.jsx';
 import Hero from './components/Hero.jsx';
 import Catalog from './components/Catalog.jsx';
@@ -15,7 +15,7 @@ import { PRODUCTS } from './data/products.js';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
-  const [cart, setCart] = useState(() => { try { return JSON.parse(localStorage.getItem('wf-cart')) || []; } catch { return []; } });
+  const [cart, setCart] = useState(() => { try { return (JSON.parse(localStorage.getItem('wf-cart')) || []).map(i => i.k ? i : { ...i, len: LENGTHS[0], k: `${i.id}-${LENGTHS[0]}` }); } catch { return []; } });
   const [cartOpen, setCartOpen] = useState(false);
   // Link direto para uma peça: site.com/#p=cruz-cartier
   const [product, setProduct] = useState(() => PRODUCTS.find(p => location.hash === '#p=' + p.id) || null);
@@ -40,17 +40,25 @@ export default function App() {
     return () => { clearTimeout(t); ctx.revert(); gsap.ticker.remove(tick); lenis && lenis.destroy(); scroller.lenis = null; };
   }, []);
 
-  const add = (p, qty = 1) => setCart(c => {
-    const ex = c.find(i => i.id === p.id);
-    return ex ? c.map(i => i.id === p.id ? { ...i, qty: i.qty + qty } : i) : [...c, { id: p.id, name: p.name, sub: p.sub, img: p.thumb, qty }];
+  // Cada linha da sacola é peça + comprimento (a mesma peça em 60 e 70 cm são linhas diferentes)
+  const add = (p, qty = 1, len = LENGTHS[0]) => setCart(c => {
+    const k = `${p.id}-${len}`;
+    const ex = c.find(i => i.k === k);
+    return ex ? c.map(i => i.k === k ? { ...i, qty: i.qty + qty } : i) : [...c, { k, id: p.id, name: p.name, sub: p.sub, img: p.thumb, len, qty }];
   });
-  const update = (id, d) => setCart(c => c.map(i => i.id === id ? { ...i, qty: i.qty + d } : i).filter(i => i.qty > 0));
-  const remove = id => setCart(c => c.filter(i => i.id !== id));
+  const update = (k, d) => setCart(c => c.map(i => i.k === k ? { ...i, qty: i.qty + d } : i).filter(i => i.qty > 0));
+  const setLen = (k, len) => setCart(c => {
+    const it = c.find(i => i.k === k); const nk = `${it.id}-${len}`;
+    const other = c.find(i => i.k === nk);
+    if (other) return c.filter(i => i.k !== k).map(i => i.k === nk ? { ...i, qty: i.qty + it.qty } : i);
+    return c.map(i => i.k === k ? { ...i, k: nk, len } : i);
+  });
+  const remove = k => setCart(c => c.filter(i => i.k !== k));
   const checkout = () => {
     if (!cart.length) return;
     openWhats('Olá, WF Cordões e Acessórios! Vi os modelos 3D no catálogo e gostaria de finalizar este pedido:\n\n'
-      + cart.map(i => `• ${i.name} — 60 a 70 cm — ${i.qty} un.
-  📷 ${location.origin}/catalogo/${i.id}-1.jpg`).join('\n')
+      + cart.map(i => `• ${i.name} — ${i.len} cm — ${i.qty} un.
+  Foto: ${location.origin}/catalogo/${i.id}-1.jpg`).join('\n')
       + '\n\nPode me enviar fotos/vídeo das peças reais e confirmar valores e disponibilidade?');
   };
 
@@ -67,7 +75,7 @@ export default function App() {
       <Footer />
       <WhatsFloat hidden={!!product || cartOpen} />
       {product && <ProductModal product={product} onClose={() => setProduct(null)} onAdd={add} />}
-      {cartOpen && <CartDrawer items={cart} onClose={() => setCartOpen(false)} onUpdate={update} onRemove={remove} onCheckout={checkout} />}
+      {cartOpen && <CartDrawer items={cart} onClose={() => setCartOpen(false)} onUpdate={update} onLen={setLen} onRemove={remove} onCheckout={checkout} />}
     </div>
   );
 }
