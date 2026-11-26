@@ -4,5 +4,6 @@ const dir = 'public/catalogo';
 for (const f of fs.readdirSync(dir).filter(f => f.endsWith('.jpg'))) {
   await sharp(`${dir}/${f}`).resize(640).webp({ quality: 72 }).toFile(`${dir}/thumbs/${f.replace('.jpg', '.webp')}`);
 }
-await sharp('public/assets/vitrine.jpg').resize(1200, 630, { fit: 'cover' }).jpeg({ quality: 80 }).toFile('public/og-image.jpg');
+const logo = await sharp('public/assets/wf-logo.png').resize({ width: 560 }).png().toBuffer();
+await sharp({ create: { width: 1200, height: 630, channels: 3, background: '#0b0b0b' } }).composite([{ input: logo, gravity: 'center' }]).jpeg({ quality: 88 }).toFile('public/og-image.jpg');
 console.log('ok');
