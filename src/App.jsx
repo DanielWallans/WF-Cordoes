@@ -15,7 +15,7 @@ import { PRODUCTS } from './data/products.js';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function App() {
-  const [cart, setCart] = useState(() => { try { return (JSON.parse(localStorage.getItem('wf-cart')) || []).map(i => i.k ? i : { ...i, len: LENGTHS[0], k: `${i.id}-${LENGTHS[0]}` }); } catch { return []; } });
+  const [cart, setCart] = useState(() => { try { return (JSON.parse(localStorage.getItem('wf-cart')) || []).map(i => i.k && LENGTHS.includes(i.len) ? i : { ...i, len: LENGTHS[0], k: `${i.id}-${LENGTHS[0]}` }); } catch { return []; } });
   const [cartOpen, setCartOpen] = useState(false);
   // Link direto para uma peça: site.com/#p=cruz-cartier
   const [product, setProduct] = useState(() => PRODUCTS.find(p => location.hash === '#p=' + p.id) || null);
