@@ -101,7 +101,7 @@ export function Instagram() {
 // ---------- Dúvidas ----------
 const FAQ = [
   ['As imagens do catálogo são da peça real?', 'Os modelos do catálogo são em 3D, para você ver o formato e o caimento no busto. Em cada peça há também a "Foto real". Ao finalizar pelo WhatsApp, a WF envia fotos e vídeo da peça que você vai receber.'],
-  ['Qual o comprimento das peças?', 'Todas as peças são em 60 cm.'],
+  ['Qual o comprimento das peças?', 'Os cordões são de 60 cm a 70 cm. É só informar o comprimento desejado na conversa pelo WhatsApp.'],
   ['Do que são feitas?', 'Todas as peças são produzidas 100% em moeda antiga, lixadas e polidas.'],
   ['Como faço o pedido?', 'Adicione as peças à sacola e toque em "Finalizar pedido pelo WhatsApp". A mensagem já vai pronta com a lista — a WF responde com valores, disponibilidade e as fotos reais.'],
   ['Como pago e como recebo?', 'Formas de pagamento, prazos e entrega são combinados diretamente com a WF pelo WhatsApp.'],

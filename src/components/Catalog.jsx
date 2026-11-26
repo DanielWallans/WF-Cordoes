@@ -43,7 +43,7 @@ export default function Catalog({ onOpen, onAdd, cart }) {
             <div className="card-info">
               <div>
                 <h3>{p.name}</h3>
-                <span className="card-sub">{p.sub} · 60 cm</span>
+                <span className="card-sub">{p.sub} · 60 a 70 cm</span>
               </div>
               <button className={'card-add' + (inCart(p.id) ? ' on' : '')} onClick={() => onAdd(p)}>{inCart(p.id) ? 'Na sacola ✓' : '+ Sacola'}</button>
             </div>

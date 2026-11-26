@@ -49,7 +49,7 @@ export default function App() {
   const checkout = () => {
     if (!cart.length) return;
     openWhats('Olá, WF Cordões e Acessórios! Vi os modelos 3D no catálogo e gostaria de finalizar este pedido:\n\n'
-      + cart.map(i => `• ${i.name} — 60 cm — ${i.qty} un.
+      + cart.map(i => `• ${i.name} — 60 a 70 cm — ${i.qty} un.
   📷 ${location.origin}/catalogo/${i.id}-1.jpg`).join('\n')
       + '\n\nPode me enviar fotos/vídeo das peças reais e confirmar valores e disponibilidade?');
   };

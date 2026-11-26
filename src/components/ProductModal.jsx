@@ -16,7 +16,7 @@ export default function ProductModal({ product: p, onClose, onAdd }) {
   }, [onClose]);
 
   const add = () => { onAdd(p, qty); setAdded(true); setTimeout(() => setAdded(false), 1800); };
-  const ask = () => openWhats(`Olá, WF Cordões e Acessórios! Vi o modelo 3D do(a) *${p.name}* no catálogo (60 cm, ${qty} un.).\nFoto: ${location.origin}${p.imgs[0]}\n\nPode me enviar fotos/vídeo da peça real e confirmar valor e disponibilidade?`);
+  const ask = () => openWhats(`Olá, WF Cordões e Acessórios! Vi o modelo 3D do(a) *${p.name}* no catálogo (60 a 70 cm, ${qty} un.).\nFoto: ${location.origin}${p.imgs[0]}\n\nPode me enviar fotos/vídeo da peça real e confirmar valor e disponibilidade?`);
 
   return (
     <div className="modal-wrap" data-lenis-prevent>
@@ -48,7 +48,7 @@ export default function ProductModal({ product: p, onClose, onAdd }) {
           <span className="eyebrow cyan">Modelo 3D</span>
           <h2 className="h2">{p.name}</h2>
           <p className="p desc">{p.desc}</p>
-          <span className="specs">{p.sub} · 60 cm · 100% moeda antiga · lixado e polido</span>
+          <span className="specs">{p.sub} · 60 a 70 cm · 100% moeda antiga · lixado e polido</span>
           <div className="notice">
             <strong>Este é um modelo 3D ilustrativo.</strong> Finalize o pedido pelo WhatsApp para ver a peça real em fotos e vídeo e confirmar valor e disponibilidade.
           </div>

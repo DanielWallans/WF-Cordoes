@@ -1,6 +1,6 @@
 # WF Cordões e Acessórios
 
-Site da WF Cordões e Acessórios, marca de cordões e pingentes produzidos 100% em moeda antiga, lixados e polidos, todos em 60 cm.
+Site da WF Cordões e Acessórios, marca de cordões e pingentes produzidos 100% em moeda antiga, lixados e polidos, de 60 cm a 70 cm.
 
 O site funciona como uma vitrine digital. O cliente conhece a marca, navega pelo catálogo, vê cada peça em 3D e envia o pedido direto para o WhatsApp da loja. Não há preços nem pagamento online: valores, disponibilidade e entrega são combinados na conversa.
 

@@ -15,7 +15,7 @@ export default function CartDrawer({ items, onClose, onUpdate, onRemove, onCheck
               <img src={i.img} alt="" />
               <div className="line-info">
                 <span className="line-name">{i.name}</span>
-                <span className="card-sub">{i.sub} · 60 cm</span>
+                <span className="card-sub">{i.sub} · 60 a 70 cm</span>
                 <div className="qty sm"><button onClick={() => onUpdate(i.id, -1)}>−</button><span>{i.qty}</span><button onClick={() => onUpdate(i.id, 1)}>+</button></div>
               </div>
               <button className="link" onClick={() => onRemove(i.id)}>Remover</button>
